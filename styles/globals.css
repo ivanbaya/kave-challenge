@@ -1,0 +1,141 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Poppins;
+}
+#__next {
+  width:100%;
+  height: 100%;
+}
+h1,h2,h3,h4{
+  font-family: NotoSerif; 
+}
+h2{
+  text-align: center;
+  color: #4A4A4A;
+}
+div{
+  float:left;
+}
+hr{
+  display:block;
+  width: 2000px;
+  border:1px solid rgb(240, 240, 240);
+}
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+ul{
+  width: 100%;
+  display: table;
+  text-align: center;
+  padding-left: 0;
+}
+ul li{
+  display: inline-block;
+  float: none;
+  background-color: rgb(240, 240, 240);
+  color:#4A4A4A;
+  padding: 10px;
+  margin-left: 0;
+  margin:10px;
+}
+ul li a:visited{
+  color:#4A4A4A;
+}
+.header {
+  width: 100%;
+  padding: 16px;
+  padding-bottom: 0px;
+  padding-right: 0;
+  padding-left: 0;
+}
+.logotipo{
+  padding-left: 16px;
+}
+.search-bar{
+  border-radius:10px;
+  padding:5px;
+  padding-bottom:0px;
+  background-color: rgb(240, 240, 240);
+  margin-left: 30px;
+  width: 400px;
+}
+.search-bar input{
+  border:0;
+  outline: none;
+  color:black;
+  width:80%;
+  background-color: rgb(240, 240, 240);
+}
+.search-icon{
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.image-container{
+  height: 48em;
+  width: 100%;
+  position: relative;
+}
+.favorito{
+  float:right;
+  margin-top: 5px;
+  margin-right: 15px;
+}
+.linea1{
+  height: 10px;
+  float:right;
+}
+
+.linea2{
+  display:none;
+  float:right;
+}
+.bottomleft {
+  position: absolute;
+  bottom: 130px;
+  left: 70px;
+  font-size: 3em;
+  font-family: Poppins-Bold;
+  color: white;
+}
+.center-div{
+  text-align: center;
+  margin:auto;
+  width: 100%;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../public/fonts/Poppins-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("../public/fonts/Poppins-Bold.ttf");
+  font-style: bold;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "NotoSerif";
+  src: url("../public/fonts/NotoSerif-Regular.ttf");
+  font-style: medium;
+  font-weight: 500;
+  font-display: swap;
+}
+@media screen and (max-width: 768px) {
+  .search-bar{margin-left: 15px;width: calc(100% - 40px);}
+  .linea1{display:none;}
+  .linea2{display:block;}
+  .header{padding-bottom: 10px;}
+  .bottomleft{font-size: 2em;left:10px;bottom: 10px;}
+  .image-container{height: 100%;}
+}
+

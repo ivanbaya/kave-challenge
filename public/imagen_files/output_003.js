@@ -1,0 +1,3 @@
+document.documentElement.className='fallback';if(window.localStorage&&localStorage.webfonts){injectRawStyle(localStorage.webfonts);}else{window.onload=function(){injectFontsStyleSheet();}}
+function injectFontsStyleSheet(){fetch(fontCssUrl).then((res)=>res.status===200?res.text():null).then((res)=>{if(res){injectRawStyle(res);localStorage.webfonts=res;}})}
+function injectRawStyle(rawText){const style=document.createElement('style');style.innerHTML=rawText;document.head.appendChild(style);document.documentElement.className="webFont"};
