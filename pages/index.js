@@ -1,7 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+import React from "react";
+import dynamic from "next/dynamic";
+
+const Header = dynamic(() => import("./components/header"));
 
 export default function Home() {
   return (
@@ -13,48 +16,28 @@ export default function Home() {
       </Head>
 
       <main>
-        <header>
-          <div class="header">
-            <div class="logotipo">
-            <Link href="/"><a><Image src="/icon.svg" alt="Vercel Logo" width={161} height={30}/></a></Link>
-           </div>
-           <div class="favorito">
-              <Image src="/corazon.svg" alt="Search icon" width={25} height={25} objectFit='contain'></Image>
-            </div>
-            <div class="linea2"><hr></hr></div>
-            <div class="search-bar">
-              <form action="/action_page.php">
-                <div class="search-icon">
-                  <Image src="/search.svg" alt="Search icon" width={20} height={20} objectFit='contain'></Image>
-                </div>
-                <input type="text" placeholder="Buscar productos"></input>
-              </form>
-            </div>
-            <div class="linea1"><hr></hr></div>
-          </div>
-        </header>
+        <Header/>
           <div class="image-container">
             <img src="/portada_pc.svg" alt="Portada" width="100%" height="100%"/>
             <div class="bottomleft">
               <p>Cuando la realidad supera la ficción.<br/>Trucos para estar en casa.</p>
               </div>
           </div>
-
             <div class="center-div">
               <h2>Inspírate</h2>
             </div>
             <ul>
-              <li><a href="">Estancias</a>
+              <li><Link href=""><a>Estancias</a></Link>
               </li>
-              <li><a href="">Proyectos</a>
+              <li><Link href=""><a>Proyectos</a></Link>
               </li>
-              <li><a href="">Muebles</a>
+              <li><Link href=""><a>Euebles</a></Link>
               </li>
-              <li><a href="">Decoración</a>
+              <li><Link href=""><a>Decoración</a></Link>
               </li>
-              <li><a href="">We are Kave</a>
+              <li><Link href=""><a>We are Kave</a></Link>
               </li>
-              <li><a href="">Estil</a>
+              <li><Link href=""><a>Estil</a></Link>
               </li>
             </ul>
       </main>
