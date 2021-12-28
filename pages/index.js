@@ -3,10 +3,24 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from "react";
 import dynamic from "next/dynamic";
+import { useMediaQuery } from 'react-responsive';
+import Data from "../public/productos/productos.json";
 
 const Header = dynamic(() => import("./components/header"));
+const Items = dynamic(() => import("./components/items"));
+const categorias = ['Estancias', 'Proyectos', 'Muebles', 'Decoración', 'We are Kave', 'Estil'];
+const countProductes = Data.map(item => item.display).length-1;
+
+let numProductos = 8;
 
 export default function Home() {
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  if (isMobile){
+    numProductos = 5;
+  }else{
+    numProductos = 8;
+  }
+  const randomNum = Math.floor(Math.random() * countProductes-numProductos) + 0;
   return (
     <>
       <Head>
@@ -17,31 +31,38 @@ export default function Home() {
 
       <main>
         <Header/>
-          <div class="image-container">
-            <img src="/portada_pc.svg" alt="Portada" width="100%" height="100%"/>
-            <div class="bottomleft">
-              <p>Cuando la realidad supera la ficción.<br/>Trucos para estar en casa.</p>
-              </div>
+        <div class="image-container">
+          <img src="/portada_pc.svg" alt="Portada" width="100%" height="100%"/>
+          <div class="bottomleft">
+            <p>Cuando la realidad supera la ficción.<br/>Trucos para estar en casa.</p>
           </div>
-            <div class="center-div">
-              <h2>Inspírate</h2>
-            </div>
-            <ul>
-              <li><Link href=""><a>Estancias</a></Link>
+        </div>
+        <div class="center-div">
+          <h2>Inspírate</h2>
+        </div>
+        <ul class="categorias">
+          {categorias.map(categoria => (
+            <li><Link href=""><a>
+              {categoria}
+            </a></Link></li>
+          ))}
+        </ul>
+        <div class="center-div">
+          <ul>
+            {categorias.map(categoria => (
+              <li class="item">
+                <Image src="/Rectangle.png" alt={categoria} width={230} height={180}></Image>
+                <Link href=""><a><p>{categoria}</p></a></Link>
               </li>
-              <li><Link href=""><a>Proyectos</a></Link>
-              </li>
-              <li><Link href=""><a>Euebles</a></Link>
-              </li>
-              <li><Link href=""><a>Decoración</a></Link>
-              </li>
-              <li><Link href=""><a>We are Kave</a></Link>
-              </li>
-              <li><Link href=""><a>Estil</a></Link>
-              </li>
-            </ul>
+            ))}
+          </ul>
+        </div>
+        <Items min={randomNum} max={randomNum+numProductos}/>
       </main>
       <footer>
+        <div class="ver-productos">
+        <Link href="productos"><a>VER TODOS LOS PRODUCTOS</a></Link>
+        </div>
       </footer>
     </>
   )

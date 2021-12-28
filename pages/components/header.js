@@ -10,7 +10,7 @@ export default function Header() {
             <Link href="/"><a><Image src="/icon.svg" alt="Vercel Logo" width={161} height={30}/></a></Link>
            </div>
            <div class="favorito">
-              <Image src="/corazon.svg" alt="Search icon" width={25} height={25} objectFit='contain'></Image>
+           <Link href="favoritos"><a><Image src="/corazon.svg" alt="Search icon" width={25} height={25} objectFit='contain'></Image></a></Link>
             </div>
             <div class="linea2"><hr></hr></div>
             <div class="search-bar">
