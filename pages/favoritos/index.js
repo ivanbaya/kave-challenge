@@ -9,7 +9,7 @@ const Header = dynamic(() => import("../components/header"));
 const Items = dynamic(() => import("../components/items-favoritos"));
 const countProductes = 20;
 if (typeof window !== "undefined") {
-    countProductes = window.localStorage.length;
+    countProductes = cogerListaFavoritos().length
 }
 
 let pagina = 0;
@@ -57,20 +57,19 @@ export default function Productos() {
     paginas.splice(0,paginas.length);
     let firstNumber = num-3;
     let numeroPaginas = 7;
+    if(firstNumber > countProductes/numProductos-7){
+      firstNumber = Math.round(countProductes/numProductos-7);
+    }
     if(firstNumber < 1){
       firstNumber = 1;
     }
-    if(countProductes > numProductos){
-        if(firstNumber > countProductes/numProductos-7){
-        firstNumber = Math.round(countProductes/numProductos-7);
-        }
-    }
     if(countProductes/numProductos < 7){
-        numeroPaginas = Math.round(countProductes/numProductos);
+        numeroPaginas = Math.ceil(countProductes/numProductos);
     }
-    for(var i = firstNumber; i<=firstNumber+numeroPaginas;i++){
+    for(var i = firstNumber; i<firstNumber+numeroPaginas;i++){
       paginas.push(i);
     }
+    console.log(numeroPaginas);
     return pagina = num;
   }
 
@@ -97,3 +96,17 @@ export default function Productos() {
       }
     }
   }  
+
+  function cogerListaFavoritos(){
+    const valuesJson = []
+    let values = []
+    if (typeof window !== 'undefined') {
+      valuesJson = JSON.parse(window.localStorage.getItem("favoritos"))
+      if(valuesJson){
+        valuesJson.map((item) =>{
+          values.push(JSON.parse(item))
+        })
+      }
+    }
+    return values;
+  }

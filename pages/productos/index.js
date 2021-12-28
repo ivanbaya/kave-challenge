@@ -53,11 +53,11 @@ export default function Productos() {
     paginas.splice(0,paginas.length);
     let firstNumber = num-3;
     let numeroPaginas = 7;
-    if(firstNumber < 1){
-      firstNumber = 1;
-    }
     if(firstNumber > countProductes/numProductos-7){
       firstNumber = Math.round(countProductes/numProductos-7);
+    }
+    if(firstNumber < 1){
+      firstNumber = 1;
     }
     if(countProductes/numProductos < 7){
         numeroPaginas = Math.round(countProductes/numProductos);
