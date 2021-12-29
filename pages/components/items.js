@@ -5,7 +5,7 @@ import Product from './product';
 export default function Items(min,max){
 
   return (
-    <div>
+    <div class="center-div">
         { Data.map((item, index)=> {
           if(index >= min.min && index <= min.max) {
             return(
