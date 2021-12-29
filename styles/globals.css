@@ -15,6 +15,10 @@ h2{
   text-align: center;
   color: #4A4A4A;
 }
+h3{
+  font-size: 0.9em;
+  color:#4A4A4A;
+}
 div{
   float:left;
 }
@@ -28,11 +32,23 @@ img {
   height: 100%;
   object-fit: cover;
 }
-ul{
+.categorias{
   width: 100%;
   display: table;
   text-align: center;
   padding-left: 0;
+}
+ul{
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding-left: 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
+  overflow: auto;
+}
+ul::-webkit-scrollbar {
+  display: none;
 }
 ul li{
   display: inline-block;
@@ -46,9 +62,26 @@ ul li{
 ul li a:visited{
   color:#4A4A4A;
 }
+footer{
+  text-align: center;
+  margin:auto;
+  margin-bottom: 20px;
+  clear:both;
+}
+
+footer a {
+  color: black;
+  padding: 8px;
+  text-decoration: none;
+}
+
+footer a.active {
+  font-family: Poppins-Bold;
+}
+footer a:hover:not(.active) {background-color: #ddd;}
 .header {
   width: 100%;
-  padding: 16px;
+  padding-top: 16px;
   padding-bottom: 0px;
   padding-right: 0;
   padding-left: 0;
@@ -103,12 +136,54 @@ ul li a:visited{
   font-family: Poppins-Bold;
   color: white;
 }
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
 .center-div{
   text-align: center;
   margin:auto;
   width: 100%;
 }
-
+.ver-productos{
+  text-align: center;
+  margin:auto;
+  margin-top:5em;
+  margin-bottom: 5em;
+  width: 100%;
+}
+.ver-productos a{
+  padding:15px;
+  border:1px solid black;
+}
+.item{
+  background-color:transparent;
+}
+.producto{
+  margin-left:6.5%;
+  margin-top:3em;
+  position: relative;
+}
+.producto img{
+  background-color: rgb(245, 245, 245);
+}
+.producto h1{
+  font-size: 1.2em;
+  font-family: Poppins-Bold;
+  color: #4A4A4A;
+  margin-bottom: 0;
+}
+.producto p{
+  margin-top: 0;
+}
+.producto a:link {
+  text-decoration: none;
+  color: #4A4A4A;
+}
+.invisible{
+  display:none;
+}
 @font-face {
   font-family: "Poppins";
   src: url("../public/fonts/Poppins-Regular.ttf");
@@ -130,12 +205,12 @@ ul li a:visited{
   font-weight: 500;
   font-display: swap;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 760px) {
   .search-bar{margin-left: 15px;width: calc(100% - 40px);}
-  .linea1{display:none;}
   .linea2{display:block;}
-  .header{padding-bottom: 10px;}
   .bottomleft{font-size: 2em;left:10px;bottom: 10px;}
   .image-container{height: 100%;}
+  .producto{margin:1em;}
+  ul{display:flex;}
 }
 
