@@ -7,7 +7,7 @@ import Data from "../../public/productos/productos.json";
 import { useState } from "react";
 
 const Header = dynamic(() => import("../components/header"));
-const fav = dynamic(() => import("../components/favoritosClass"));
+const fav = dynamic(() => import("../components/listaProductos"));
 
 export default function ProductoMuestra({ ruta, href }) {
   let { asPath } = useRouter()

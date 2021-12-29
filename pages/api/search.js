@@ -10,8 +10,6 @@ function cogerLista(){
   return values;
 }
 
-
-
 export default (req, res) => {
     const results = req.query.q ?
         listaProductos.filter(producto => producto.productName.toLowerCase().includes(req.query.q)) : []

@@ -1,5 +1,6 @@
 import React from 'react';
 import Product from './product';
+import dynamic from "next/dynamic";
 
 export default function Items(min,max){
 
@@ -20,7 +21,7 @@ export default function Items(min,max){
   }
 
   return (
-        <div>
+        <div class="center-div">
         { listaFavoritos.map((item, index)=> {
           if(index >= min.min && index <= min.max) {
             return(

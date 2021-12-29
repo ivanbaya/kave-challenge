@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { useCallback, useRef, useState } from 'react'
 import Link from 'next/link'
-import Collapsible from "react-collapsible-paragraph";
 
 export default function  Search() {
 
