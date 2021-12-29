@@ -7,7 +7,7 @@ import Data from "../../public/productos/productos.json";
 import { useState } from "react";
 
 const Header = dynamic(() => import("../components/header"));
-const fav = dynamic(() => import("../components/favoritosClass").then((add => add.addFavoritos)));
+const fav = dynamic(() => import("../components/favoritosClass"));
 
 export default function ProductoMuestra({ ruta, href }) {
   let { asPath } = useRouter()
@@ -45,25 +45,26 @@ export default function ProductoMuestra({ ruta, href }) {
   return (
     <>    
     <Header></Header>
-    <div>
     { productos.map((item)=> {
       if(item.productSku == asPath) {
         return(
           <div key={item.productSku}>
-            <div class="image-container">
+            <div class="product-info-image">
               <img src={item.productImageUrl ? item.productImageUrl : "https://media.kavehome.com/media/catalog/product/E/A/EA344M01V01.jpg.jpeg"} alt="Portada" width="100%" height="100%"/>
               <div class="topright">
                 <Image src={image} onClick={() => addFavoritos(item)} alt="Favorito" width={25} height={25} objectFit='contain' ></Image>
               </div>
             </div>
-            <div>
+            <div class="product-info">
               <h1>{item.productCollection}</h1>
+              <h3>{item.productCategoryHierarchy}</h3>
+              <h2>{item.productPrice}€</h2>
+              <p>{item.productName}</p>
             </div>
           </div>
         )
       }
     })}
-    </div>
   </>
 )
 }
