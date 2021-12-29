@@ -69,7 +69,6 @@ export default function Productos() {
     for(var i = firstNumber; i<firstNumber+numeroPaginas;i++){
       paginas.push(i);
     }
-    console.log(numeroPaginas);
     return pagina = num;
   }
 

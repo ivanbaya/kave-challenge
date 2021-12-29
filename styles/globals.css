@@ -66,6 +66,7 @@ footer{
   text-align: center;
   margin:auto;
   margin-bottom: 20px;
+  clear:both;
 }
 
 footer a {
