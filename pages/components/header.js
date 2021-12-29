@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from "react";
+import Search from './searchBar';
 
 export default function Header() {
   return (
@@ -13,14 +14,7 @@ export default function Header() {
            <Link href="/favoritos"><a><Image src="/corazon.svg" alt="Search icon" width={25} height={25} objectFit='contain'></Image></a></Link>
             </div>
             <div class="linea2"><hr></hr></div>
-            <div class="search-bar">
-              <form action="/action_page.php">
-                <div class="search-icon">
-                  <Image src="/search.svg" alt="Search icon" width={20} height={20} objectFit='contain'></Image>
-                </div>
-                <input type="text" placeholder="Buscar productos"></input>
-              </form>
-            </div>
+            <Search/>
             <div class="linea1"><hr></hr></div>
           </div>
         </header>

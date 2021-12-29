@@ -51,7 +51,7 @@ export default function Home() {
           <ul>
             {categorias.map(categoria => (
               <li class="item">
-                <Image src="/Rectangle.png" alt={categoria} width={230} height={180}></Image>
+                <img src="/Rectangle.png" alt={categoria} width={230} height={180}></img>
                 <Link href=""><a><p>{categoria}</p></a></Link>
               </li>
             ))}
