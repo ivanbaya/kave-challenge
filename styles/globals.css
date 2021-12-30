@@ -71,7 +71,7 @@ footer{
 
 footer a {
   color: black;
-  padding: 8px;
+  padding: 5px;
   text-decoration: none;
 }
 
@@ -168,10 +168,12 @@ footer a:hover:not(.active) {background-color: #ddd;}
   height: 180px;
 }
 .producto{
-  margin-left:7.5%;
+  margin-left:2%;
+  margin-right: 2%;
   margin-top:3em;
   position: relative;
   text-align: left;
+  display:inline-block;
 }
 .producto img{
   background-color: rgb(245, 245, 245);
