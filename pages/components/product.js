@@ -19,14 +19,14 @@ export default function Product ({item}) {
       }
     }
     return (
-        <div key={item.productSku} className="producto">
+        <li key={item.productSku} className="producto">
               <Link href={"/productos/"+item.productSku}><a><Image src={item.productImageUrl ? item.productImageUrl : "https://media.kavehome.com/media/catalog/product/E/A/EA344M01V01.jpg.jpeg"} alt={item.productName} width={450} height={300} objectFit='contain'></Image></a></Link>
               <div className="topright">
                 <Image id={item} src={image} onClick={() => addFavoritos(item)} alt="Favorito" width={25} height={25} objectFit='contain' ></Image>
               </div>
               <h1>{item.productCollection}</h1>
               <p>{item.productPrice}€</p>
-            </div>
+            </li>
     )
 }
 let favList = []
