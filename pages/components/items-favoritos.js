@@ -21,7 +21,7 @@ export default function Items(min,max){
   }
 
   return (
-        <div class="center-div">
+        <div className="center-div">
         { listaFavoritos.map((item, index)=> {
           if(index >= min.min && index <= min.max) {
             return(

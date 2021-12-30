@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import React from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { useMediaQuery } from 'react-responsive';
 
@@ -8,35 +8,20 @@ const Header = dynamic(() => import("./header"));
 let ItemsFav = dynamic(() => import("./items-favoritos"));
 let Items= dynamic(() => import("./items"));
 
-let pagina = 0;
-let paginas = [];
-let numProductos = 11;
-
 export default function ListaProductos(countProductes, Tipo) {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
-  if (isMobile){
-    numProductos = 5;
-  }else{
-    numProductos = 12;
+  let [pagina, setPagina] = useState(1)
+  let paginas = [];
+  let numProductos = isMobile ? 6 : 12;
+  let firstNumber = Math.min((pagina-3 < 1 ? 1 : pagina-3), Math.ceil(countProductes.countProductes/numProductos-7));
+  let numeroPaginas = Math.min(8, Math.ceil(countProductes.countProductes/numProductos));
+
+  if(firstNumber < 1){
+    firstNumber = 1;
   }
-  Pagina(pagina)
-  function Pagina(num) {
-    paginas.splice(0,paginas.length);
-    let firstNumber = num-3;
-    let numeroPaginas = 8;
-    if(firstNumber > countProductes.countProductes/numProductos-7){
-      firstNumber = Math.round(countProductes.countProductes/numProductos-7);
-    }
-    if(firstNumber < 1){
-      firstNumber = 1;
-    }
-    if(countProductes.countProductes/numProductos < 8){
-        numeroPaginas = Math.ceil(countProductes.countProductes/numProductos);
-    }
-    for(var i = firstNumber; i<firstNumber+numeroPaginas;i++){
-      paginas.push(i);
-    }
-    return pagina = num;
+
+  for(var i = firstNumber; i < firstNumber+numeroPaginas;i++){
+    paginas.push(i)
   }
 
   function Check(num){
@@ -72,21 +57,21 @@ export default function ListaProductos(countProductes, Tipo) {
   
         <main>
           <Header/>
-          <div class="center-div">
+          <div className="center-div">
             <h2>{countProductes.Tipo}</h2>
             <h3>Lorem ipsum dolor sit amet</h3>
           </div>
           {countProductes.Tipo == "Lista de Favoritos" ? (
-            <ItemsFav min={pagina*numProductos} max={pagina*numProductos+numProductos-1}/>)
-            : (<Items min={pagina*numProductos} max={pagina*numProductos+numProductos-1}/>)}
+            <ItemsFav min={(pagina-1)*numProductos} max={pagina*numProductos-1}/>)
+            : (<Items min={(pagina-1)*numProductos} max={pagina*numProductos-1}/>)}
           
         </main>
         <footer>
-          <Link href={''}><a onClick={()=>Pagina(pagina-1)} class={CheckArrow('left')}>&lsaquo;</a></Link>
-          {paginas.map(pages=> (
-              <Link href={''}><a onClick={()=>Pagina(pages-1)} class={Check(pages-1)}>{pages}</a></Link>
+          <Link key="aleft" href={''}><a onClick={()=>setPagina(pagina-1)} className={CheckArrow('left')}>&lsaquo;</a></Link>
+          {paginas.map((page, index)=> (
+              <Link key={index} href={''}><a key={index} onClick={()=>setPagina(page)} className={Check(page)}>{page}</a></Link>
             ))}
-          <Link href={''}><a onClick={()=>Pagina(pagina+1)} class={CheckArrow('right')}>&rsaquo;</a></Link>
+          <Link key="aright" href={''}><a onClick={()=>setPagina(pagina+1)} className={CheckArrow('right')}>&rsaquo;</a></Link>
         </footer>
       </>
     )
