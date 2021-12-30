@@ -25,6 +25,11 @@ export default function  Search() {
         }
     }, [])
 
+    const onSumbit = useCallback(() => {
+        setQuery("")
+        setActive(false)
+    })
+
     const onFocus = useCallback(() => {
         setActive(true)
         window.addEventListener('click', onClick)
@@ -38,25 +43,27 @@ export default function  Search() {
     }, [])
 
     return (
-        <div className="search-bar" ref={searchRef}>
+        <div className={ active && results.length > 0 ? "search-div-border" : "search-div"} ref={searchRef}>
+            <div className="search-bar" >
             <form action="/action_page.php">
                 <div className="search-icon">
                     <Image src="/search.svg" alt="Search icon" width={20} height={20} objectFit='contain'></Image>
                 </div>
-                <input type="text" placeholder="Buscar productos" onChange={onChange} onFocus={onFocus} value={query}></input>
-                { active && results.length > 0 && (
+                <input type="text" placeholder="Buscar productos" onChange={onChange} onFocus={onFocus}  value={query}></input>
+            </form>
+            </div>
+            { active && results.length > 0 && (
                     <ul className="search-productos">
                         {results.slice(0,8).map(({productSku, productName, productImageUrl}) => (
                             <li key={productSku} style={{ lineHeight: "24px" }}>
                                 <Image src={productImageUrl ? productImageUrl : "https://media.kavehome.com/media/catalog/product/E/A/EA344M01V01.jpg.jpeg"} alt={productName} width={60} height={75}></Image>
                                 <Link href="/productos/[id]" as={`/productos/${productSku}`}>
-                                    <a>{productName}</a>
+                                    <a onClick={onSumbit}>{productName}</a>
                                 </Link>
                             </li>
                         ))}
                     </ul>
                 )}
-            </form>
         </div>
         
     )
