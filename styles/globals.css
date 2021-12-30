@@ -62,6 +62,7 @@ ul li{
 ul li a:visited{
   color:#4A4A4A;
 }
+
 footer{
   text-align: center;
   margin:auto;
@@ -143,6 +144,10 @@ footer a:hover:not(.active) {background-color: #ddd;}
   text-align: center;
   margin:auto;
   width: 100%;
+}
+
+.center-div li{
+  background-color: transparent;
 }
 .ver-productos{
   text-align: center;
@@ -290,6 +295,7 @@ footer a:hover:not(.active) {background-color: #ddd;}
   .image-container{height: 100%;}
   .producto{margin:1em;}
   ul{display:flex;}
+  .center-div{display:block}
   .product-info-image{height:100%;padding:0}
   .search-div{width:100%;margin-left:0px;margin-top:75px;padding-top: 0;}
   .search-div-border{margin-left:0px;width: 100%;border:none;margin-top:75px;padding-top: 0;}
