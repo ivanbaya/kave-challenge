@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import checkFavorito from "./CheckFavorites";
 
 export default function Product ({item}) {
     const [image, setImage] = useState(checkFavorito(item))
@@ -26,26 +27,8 @@ export default function Product ({item}) {
               </div>
               <h1>{item.productCollection}</h1>
               <p>{item.productPrice}€</p>
-            </li>
+        </li>
     )
 }
-let favList = []
-favList = cogerListaFavoritos()
 
-function checkFavorito(item){
-  if(favList.includes(JSON.stringify(item))){
-      return "/corazon-favorito.svg"
-  }else{
-      return "/corazon.svg"; 
-  }
-}
 
-function cogerListaFavoritos(){
-  var valuesJson = []
-  if (typeof window !== 'undefined') {
-    if(JSON.parse(window.localStorage.getItem("favoritos"))){
-        valuesJson = JSON.parse(window.localStorage.getItem("favoritos"))
-    }
-  }
-  return valuesJson
-}
