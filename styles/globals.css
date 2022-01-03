@@ -70,16 +70,18 @@ footer{
   clear:both;
 }
 
-footer a {
+footer button {
   color: black;
   padding: 5px;
   text-decoration: none;
+  border:none;
+  background-color: transparent;
 }
 
-footer a.active {
+footer button.active {
   font-family: Poppins-Bold;
 }
-footer a:hover:not(.active) {background-color: #ddd;}
+footer button:hover:not(.active) {background-color: #ddd;}
 .header {
   width: 100%;
   padding:0px;
@@ -137,7 +139,7 @@ footer a:hover:not(.active) {background-color: #ddd;}
 }
 .topright {
   position: absolute;
-  top: 8px;
+  top: 16px;
   right: 16px;
 }
 .center-div{

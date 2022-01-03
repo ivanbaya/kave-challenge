@@ -1,15 +1,26 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import Data from "../../public/productos/productos.json";
+
+export async function getStaticProps() {
+  const res = await fetch(`https://kavehome.com/nfeeds/es/es/templatebuilder/20211212`)
+  const data = await res.json()
+  return {
+    props:{
+      data,
+    }
+  }
+}
 
 const ListaProductos = dynamic(() => import("../components/listaProductos"));
-const tipo = "Productos"
-const countProductes = Data.map(item => item.display).length-1;
 
-export default function Productos() {
+function Productos({data}) {
+  const tipo = "Productos"
+  const countProductes = data.results.map(item => item.display).length-1;
     return (
       <>
-        <ListaProductos countProductes={countProductes} Tipo={tipo}></ListaProductos>
+        <ListaProductos countProductes={countProductes} Tipo={tipo} data={data}></ListaProductos>
       </>
     )
   }
+
+  export default Productos

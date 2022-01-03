@@ -4,16 +4,26 @@ import Link from 'next/link'
 import React from "react";
 import dynamic from "next/dynamic";
 import { useMediaQuery } from 'react-responsive';
-import Data from "../public/productos/productos.json";
 
 const Header = dynamic(() => import("./components/header"));
 const Items = dynamic(() => import("./components/items"));
+
+export async function getStaticProps() {
+  const res = await fetch(`https://kavehome.com/nfeeds/es/es/templatebuilder/20211212`)
+  const data = await res.json()
+  return {
+    props:{
+      data,
+    }
+  }
+}
+
 const categorias = ['Estancias', 'Proyectos', 'Muebles', 'Decoración', 'We are Kave', 'Estil'];
-const countProductes = Data.map(item => item.display).length-1;
 
 let numProductos = 8;
 
-export default function Home() {
+export default function Home({data}) {
+  const countProductes = data.results.map(item => item.display).length-1;
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   if (isMobile){
     numProductos = 5;
@@ -57,7 +67,7 @@ export default function Home() {
             ))}
           </ul>
         </div>
-        <Items min={randomNum} max={randomNum+numProductos}/>
+        <Items data={data.results.slice(randomNum, randomNum+numProductos+1)}/>
       </main>
       <footer>
         <div className="ver-productos">

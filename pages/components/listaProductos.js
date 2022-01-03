@@ -8,13 +8,13 @@ const Header = dynamic(() => import("./header"));
 let ItemsFav = dynamic(() => import("./items-favoritos"));
 let Items= dynamic(() => import("./items"));
 
-export default function ListaProductos(countProductes, Tipo) {
+export default function ListaProductos({countProductes, Tipo, data}) {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   let [pagina, setPagina] = useState(1)
   let paginas = [];
   let numProductos = isMobile ? 6 : 12;
-  let firstNumber = Math.min((pagina-3 < 1 ? 1 : pagina-3), Math.ceil(countProductes.countProductes/numProductos-7));
-  let numeroPaginas = Math.min(8, Math.ceil(countProductes.countProductes/numProductos));
+  let firstNumber = Math.min((pagina-3 < 1 ? 1 : pagina-3), Math.ceil(countProductes/numProductos-7));
+  let numeroPaginas = Math.min(8, Math.ceil(countProductes/numProductos));
 
   if(firstNumber < 1){
     firstNumber = 1;
@@ -34,7 +34,7 @@ export default function ListaProductos(countProductes, Tipo) {
 
   function CheckArrow(direccion){
     if(direccion == 'right'){
-      if(pagina>countProductes.countProductes/numProductos-5){
+      if(pagina>countProductes/numProductos-5){
         return 'invisible'
       }else{
         return '';
@@ -58,20 +58,20 @@ export default function ListaProductos(countProductes, Tipo) {
         <main>
           <Header/>
           <div className="center-div">
-            <h2>{countProductes.Tipo}</h2>
+            <h2>{Tipo}</h2>
             <h3>Lorem ipsum dolor sit amet</h3>
           </div>
-          {countProductes.Tipo == "Lista de Favoritos" ? (
-            <ItemsFav min={(pagina-1)*numProductos} max={pagina*numProductos-1}/>)
-            : (<Items min={(pagina-1)*numProductos} max={pagina*numProductos-1}/>)}
+          {Tipo == "Lista de Favoritos" ? (
+            <ItemsFav min={(pagina-1)*numProductos} max={pagina*numProductos}/>)
+            : (<Items data={data.results.slice(((pagina-1)*numProductos), (pagina*numProductos))}/>)}
           
         </main>
         <footer>
-          <Link key="aleft" href={''}><a onClick={()=>setPagina(pagina-1)} className={CheckArrow('left')}>&lsaquo;</a></Link>
+          <button onClick={()=>setPagina(pagina-1)} className={CheckArrow('left')}>&lsaquo;</button>
           {paginas.map((page, index)=> (
-              <Link key={index} href={''}><a key={index} onClick={()=>setPagina(page)} className={Check(page)}>{page}</a></Link>
+              <button key={index} onClick={()=>setPagina(page)} className={Check(page)}>{page}</button>
             ))}
-          <Link key="aright" href={''}><a onClick={()=>setPagina(pagina+1)} className={CheckArrow('right')}>&rsaquo;</a></Link>
+          <button onClick={()=>setPagina(pagina+1)} className={CheckArrow('right')}>&rsaquo;</button>
         </footer>
       </>
     )

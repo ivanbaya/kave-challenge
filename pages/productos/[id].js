@@ -3,13 +3,33 @@ import Link from 'next/link'
 import React from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from 'next/router'
-import Data from "../../public/productos/productos.json";
 import { useState } from "react";
 import checkFavorito from "../components/CheckFavorites";
+import addFavoritos from "../components/AddFavoritos";
+
 
 const Header = dynamic(() => import("../components/header"));
 
-export default function ProductoMuestra({ ruta, href }) {
+export async function getStaticProps() {
+  const res = await fetch(`https://kavehome.com/nfeeds/es/es/templatebuilder/20211212`)
+  const data = await res.json()
+  return {
+    props:{
+      data,
+    }
+  }
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { id: 'YG0032R53' } },
+    ],
+    fallback: true,
+  }
+}
+
+export default function ProductoMuestra({ ruta, href, data}) {
   let { asPath } = useRouter()
   let productos = listaProductos()
   asPath = asPath.substring(11)
@@ -23,24 +43,14 @@ export default function ProductoMuestra({ ruta, href }) {
 
   function listaProductos(){
     let values = []
-        Data.map((item) =>{
+        data?.results.map((item) =>{
           values.push(item)
         })
     return values;
   }
-    
-    function addFavoritos(item){
-    if (typeof window !== "undefined") {
-      window.localStorage.removeItem("favoritos")
-      if(favList.includes(JSON.stringify(item))){
-        let pos = favList.indexOf(JSON.stringify(item))
-        favList.splice(pos,1)
-      }else{
-        favList.push(JSON.stringify(item))
-      }
-        window.localStorage.setItem("favoritos",JSON.stringify(favList))
-      setImage(checkFavorito(item))
-    }
+  function changeImage(item){
+    addFavoritos(item)
+    setImage(checkFavorito(item))
   }
   return (
     <>    
@@ -52,7 +62,7 @@ export default function ProductoMuestra({ ruta, href }) {
             <div className="product-info-image">
               <img src={item.productImageUrl ? item.productImageUrl : "https://media.kavehome.com/media/catalog/product/E/A/EA344M01V01.jpg.jpeg"} alt="Portada" width="100%" height="100%"/>
               <div className="topright">
-                <Image src={image} onClick={() => addFavoritos(item)} alt="Favorito" width={25} height={25} objectFit='contain' ></Image>
+                <Image src={image} onClick={() => changeImage(item)} alt="Favorito" width={25} height={25} objectFit='contain' ></Image>
               </div>
             </div>
             <div className="product-info">
