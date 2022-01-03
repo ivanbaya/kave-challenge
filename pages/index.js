@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
 import React from "react";
 import dynamic from "next/dynamic";
@@ -52,7 +51,7 @@ export default function Home({data}) {
         </div>
         <ul className="categorias">
           {categorias.map(categoria => (
-            <li><Link href=""><a>
+            <li><Link href="/"><a>
               {categoria}
             </a></Link></li>
           ))}
@@ -62,7 +61,7 @@ export default function Home({data}) {
             {categorias.map(categoria => (
               <li className="item">
                 <img src="/Rectangle.png" alt={categoria} width={230} height={180}></img>
-                <Link href=""><a><p>{categoria}</p></a></Link>
+                <Link href="/"><a><p>{categoria}</p></a></Link>
               </li>
             ))}
           </ul>
@@ -71,7 +70,7 @@ export default function Home({data}) {
       </main>
       <footer>
         <div className="ver-productos">
-        <Link href="productos"><a>VER TODOS LOS PRODUCTOS</a></Link>
+        <Link href="/productos"><a>VER TODOS LOS PRODUCTOS</a></Link>
         </div>
       </footer>
     </>

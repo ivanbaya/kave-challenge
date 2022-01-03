@@ -70,7 +70,16 @@ footer{
   clear:both;
 }
 
+footer a{
+  color: black;
+  padding: 5px;
+  text-decoration: none;
+  border:none;
+  background-color: transparent;
+}
+
 footer button {
+  font-size: 1em;
   color: black;
   padding: 5px;
   text-decoration: none;

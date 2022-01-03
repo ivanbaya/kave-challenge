@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { useMediaQuery } from 'react-responsive';

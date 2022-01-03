@@ -60,7 +60,7 @@ export default function ProductoMuestra({ ruta, href, data}) {
         return(
           <div key={item.productSku}>
             <div className="product-info-image">
-              <img src={item.productImageUrl ? item.productImageUrl : "https://media.kavehome.com/media/catalog/product/E/A/EA344M01V01.jpg.jpeg"} alt="Portada" width="100%" height="100%"/>
+              <img src={item.productImageUrl ? item.productImageUrl : "https://media.kavehome.com/media/catalog/product/E/A/EA344M01V01.jpg.jpeg"} alt={item.productName} width="100%" height="100%"/>
               <div className="topright">
                 <Image src={image} onClick={() => changeImage(item)} alt="Favorito" width={25} height={25} objectFit='contain' ></Image>
               </div>

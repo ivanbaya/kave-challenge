@@ -1,5 +1,3 @@
-import {changeImage} from "./product";
-
 const addFavoritos = (item, setImage) => {
     let favList = []
       favList = cogerListaFavoritos();
