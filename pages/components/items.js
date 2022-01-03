@@ -1,13 +1,13 @@
 import React from 'react';
-import Data from "../../public/productos/productos.json";
 import Product from './product';
+import { GetStaticProps } from 'next'
 
-export default function Items(min,max){
+function Items(min,max, {data}){
 
   return (
     <ul className="center-div">
-        { Data.map((item, index)=> {
-          if(index >= min.min && index <= min.max) {
+      { data.map((item, index)=> {
+          if(index >= min && index <= max) {
             return(
               <Product key={item.productSku} item={item}/>
             )
@@ -17,3 +17,15 @@ export default function Items(min,max){
   )
 }
 
+export async function getStaticProps() {
+  const res = await fetch(`https://kavehome.com/nfeeds/es/es/templatebuilder/20211212`)
+  const data = await res.json()
+
+  return {
+    props: {
+      data,
+    }
+  }
+}
+
+export default Items

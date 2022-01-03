@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from 'next/router'
 import Data from "../../public/productos/productos.json";
 import { useState } from "react";
+import checkFavorito from "../components/CheckFavorites";
 
 const Header = dynamic(() => import("../components/header"));
 
@@ -66,24 +67,4 @@ export default function ProductoMuestra({ ruta, href }) {
     })}
   </>
 )
-}
-let favList = []
-favList = cogerListaFavoritos()
-
-function checkFavorito(item){
-  if(favList.includes(JSON.stringify(item))){
-      return "/corazon-favorito.svg"
-  }else{
-      return "/corazon.svg"; 
-  }
-}
-
-function cogerListaFavoritos(){
-  var valuesJson = []
-  if (typeof window !== 'undefined') {
-    if(JSON.parse(window.localStorage.getItem("favoritos"))){
-        valuesJson = JSON.parse(window.localStorage.getItem("favoritos"))
-    }
-  }
-  return valuesJson
 }

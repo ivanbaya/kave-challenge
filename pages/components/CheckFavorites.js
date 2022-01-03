@@ -1,7 +1,7 @@
 const checkFavorito = (item) => {
     let favList = []
     favList = cogerListaFavoritos();
-    const cogerListaFavoritos = () => {
+    function cogerListaFavoritos() {
         var valuesJson = []
         if (typeof window !== 'undefined') {
           if(JSON.parse(window.localStorage.getItem("favoritos"))){
