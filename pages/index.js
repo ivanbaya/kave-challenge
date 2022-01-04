@@ -51,14 +51,14 @@ export default function Home({data}) {
           <h2>Inspírate</h2>
         </div>
         <ul className="categorias">
-          {categorias.map(categoria => (
-            <li><Link href="/"><a>{categoria}</a></Link></li>
+          {categorias.map((categoria, index) => (
+            <li key={index}><Link href="/"><a>{categoria}</a></Link></li>
           ))}
         </ul>
         <div className="center-div">
           <ul>
-            {categorias.map(categoria => (
-              <li className="item">
+            {categorias.map((categoria, index) => (
+              <li key={index} className="item">
                 <img src="/Rectangle.png" alt={categoria} width={230} height={180}></img>
                 <Link href="/"><a><p>{categoria}</p></a></Link>
               </li>

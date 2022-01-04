@@ -20,7 +20,7 @@ export default function Items(min,max){
   }
 
   return (
-        <ul className="center-div">
+        <ul className="productos-div">
         { listaFavoritos.slice(min.min, min.max).map((item)=> {
             return(
               <Product key={item.productSku} item={item}/>

@@ -16,6 +16,8 @@ h1,h2,h3,h4{
 h2{
     text-align: center;
     color: #4A4A4A;
+    padding-top:20px;
+    font-weight: normal;
 }
 h3{
     font-size: 0.9em;
@@ -48,8 +50,11 @@ ul{
   -ms-overflow-style: none;
   scrollbar-width: none; 
   overflow: auto;
-    &::-webkit-scrollbar {
+    @media screen and (max-width: 1770px) {
+      display:flex;
+      ::-webkit-scrollbar {
         display: none;
+      }
     }
     li{
         display: inline-block;
@@ -62,9 +67,6 @@ ul{
         a:visited{
             color:#4A4A4A;
         }
-    }
-    @media screen and (max-width: $mobile-screen) {
-      display:flex;
     }
 }
 footer{
@@ -175,11 +177,18 @@ footer{
   text-align: center;
   margin:auto;
   width: 100%;
+}
+.productos-div{
+  display: block;
+  grid-template-columns: repeat(auto-fit,minmax(400px, 1fr));
+    @media screen and (max-width: 1625px) {
+      display:grid;
+    }
+    @media screen and (max-width: 830px) {
+      display:block;
+    }
     li{
       background-color: transparent;
-    }
-    @media screen and (max-width: $mobile-screen) {
-      display:block
     }
 }
 .ver-productos{

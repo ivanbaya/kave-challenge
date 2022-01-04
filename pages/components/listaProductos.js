@@ -10,7 +10,7 @@ let Items= dynamic(() => import("./items"));
 export default function ListaProductos({countProductes, Tipo, data}) {
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   let [pagina, setPagina] = useState(1)
-  let paginas = [];
+  let paginas = []
   let numProductos = isMobile ? 6 : 12;
   let firstNumber = Math.min((pagina-3 < 1 ? 1 : pagina-3), Math.ceil(countProductes/numProductos-7));
   let numeroPaginas = Math.min(8, Math.ceil(countProductes/numProductos));
@@ -18,7 +18,6 @@ export default function ListaProductos({countProductes, Tipo, data}) {
   if(firstNumber < 1){
     firstNumber = 1;
   }
-
   for(var i = firstNumber; i < firstNumber+numeroPaginas;i++){
     paginas.push(i)
   }
