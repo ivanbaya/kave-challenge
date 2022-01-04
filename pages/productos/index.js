@@ -1,16 +1,15 @@
 import React from "react";
 import dynamic from "next/dynamic";
+import getProps from '../components/getProps';
 
 export async function getStaticProps() {
-  const res = await fetch(`https://kavehome.com/nfeeds/es/es/templatebuilder/20211212`)
-  const data = await res.json()
+  const data = await (await getProps()).props.data
   return {
     props:{
       data,
     }
   }
 }
-
 const ListaProductos = dynamic(() => import("../components/listaProductos"));
 
 function Productos({data}) {

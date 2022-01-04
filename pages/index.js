@@ -3,13 +3,13 @@ import Link from 'next/link'
 import React from "react";
 import dynamic from "next/dynamic";
 import { useMediaQuery } from 'react-responsive';
+import getProps from './components/getProps';
 
 const Header = dynamic(() => import("./components/header"));
 const Items = dynamic(() => import("./components/items"));
 
 export async function getStaticProps() {
-  const res = await fetch(`https://kavehome.com/nfeeds/es/es/templatebuilder/20211212`)
-  const data = await res.json()
+  const data = await (await getProps()).props.data
   return {
     props:{
       data,
@@ -30,6 +30,7 @@ export default function Home({data}) {
     numProductos = 8;
   }
   const randomNum = Math.floor(Math.random() * countProductes-numProductos) + 0;
+
   return (
     <>
       <Head>
@@ -51,9 +52,7 @@ export default function Home({data}) {
         </div>
         <ul className="categorias">
           {categorias.map(categoria => (
-            <li><Link href="/"><a>
-              {categoria}
-            </a></Link></li>
+            <li><Link href="/"><a>{categoria}</a></Link></li>
           ))}
         </ul>
         <div className="center-div">
