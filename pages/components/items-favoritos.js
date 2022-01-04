@@ -1,12 +1,11 @@
 import React from 'react';
 import Product from './product';
-import dynamic from "next/dynamic";
 
 export default function Items(min,max){
 
   var listaFavoritos = cogerListaFavoritos();
 
-  function cogerListaFavoritos(){
+  function cogerListaFavoritos(min, max){
     const valuesJson = []
     let values = []
     if (typeof window !== 'undefined') {
@@ -21,13 +20,11 @@ export default function Items(min,max){
   }
 
   return (
-        <ul className="center-div">
-        { listaFavoritos.map((item, index)=> {
-          if(index >= min.min && index <= min.max) {
+        <ul className="productos-div">
+        { listaFavoritos.slice(min.min, min.max).map((item)=> {
             return(
               <Product key={item.productSku} item={item}/>
             )
-          }
         })}
     </ul>
   )

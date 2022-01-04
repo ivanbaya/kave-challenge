@@ -1,19 +1,28 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
 import React from "react";
 import dynamic from "next/dynamic";
 import { useMediaQuery } from 'react-responsive';
-import Data from "../public/productos/productos.json";
+import getProps from './components/getProps';
 
 const Header = dynamic(() => import("./components/header"));
 const Items = dynamic(() => import("./components/items"));
+
+export async function getStaticProps() {
+  const data = await (await getProps()).props.data
+  return {
+    props:{
+      data,
+    }
+  }
+}
+
 const categorias = ['Estancias', 'Proyectos', 'Muebles', 'Decoración', 'We are Kave', 'Estil'];
-const countProductes = Data.map(item => item.display).length-1;
 
 let numProductos = 8;
 
-export default function Home() {
+export default function Home({data}) {
+  const countProductes = data.results.map(item => item.display).length-1;
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
   if (isMobile){
     numProductos = 5;
@@ -21,6 +30,7 @@ export default function Home() {
     numProductos = 8;
   }
   const randomNum = Math.floor(Math.random() * countProductes-numProductos) + 0;
+
   return (
     <>
       <Head>
@@ -41,27 +51,25 @@ export default function Home() {
           <h2>Inspírate</h2>
         </div>
         <ul className="categorias">
-          {categorias.map(categoria => (
-            <li><Link href=""><a>
-              {categoria}
-            </a></Link></li>
+          {categorias.map((categoria, index) => (
+            <li key={index}><Link href="/"><a>{categoria}</a></Link></li>
           ))}
         </ul>
         <div className="center-div">
           <ul>
-            {categorias.map(categoria => (
-              <li className="item">
+            {categorias.map((categoria, index) => (
+              <li key={index} className="item">
                 <img src="/Rectangle.png" alt={categoria} width={230} height={180}></img>
-                <Link href=""><a><p>{categoria}</p></a></Link>
+                <Link href="/"><a><p>{categoria}</p></a></Link>
               </li>
             ))}
           </ul>
         </div>
-        <Items min={randomNum} max={randomNum+numProductos}/>
+        <Items data={data.results.slice(randomNum, randomNum+numProductos+1)}/>
       </main>
       <footer>
         <div className="ver-productos">
-        <Link href="productos"><a>VER TODOS LOS PRODUCTOS</a></Link>
+        <Link href="/productos"><a>VER TODOS LOS PRODUCTOS</a></Link>
         </div>
       </footer>
     </>
