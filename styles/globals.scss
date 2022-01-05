@@ -269,10 +269,19 @@ footer{
 .invisible{
   display:none;
 }
+.product-info-global{
+  display:flex;
+    @media screen and (max-width: $mobile-screen) {
+      display:block;
+    }
+}
 .product-info{
   margin-left: 2em;
   margin-right: 2em;
-
+  width:100%;
+    @media screen and (max-width: $mobile-screen) {
+      width:initial;
+    }
     h3{
         margin-bottom: 30px;
         margin-top:0;
@@ -319,7 +328,6 @@ footer{
     }    
 }
 .product-info-image{
-  height: 59em;
   position: relative;
   overflow:hidden;
   background-color: rgb(245, 245, 245);
