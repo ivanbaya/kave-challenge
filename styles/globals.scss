@@ -181,7 +181,14 @@ footer{
 .productos-div{
   display: block;
   grid-template-columns: repeat(auto-fit,minmax(400px, 1fr));
+  grid-gap: 5px;
     @media screen and (max-width: 1625px) {
+      display:grid;
+    }
+    @media screen and (max-width: 1227px) {
+      display:block;
+    }
+    @media screen and (max-width: 1080px) {
       display:grid;
     }
     @media screen and (max-width: 830px) {
