@@ -13,15 +13,25 @@ export default function ListaProductos({countProductes, Tipo, data}) {
   let paginas = []
   let numProductos = isMobile ? 6 : 12;
   let firstNumber = Math.min((pagina-3 < 1 ? 1 : pagina-3), Math.ceil(countProductes/numProductos-7));
-  let numeroPaginas = Math.min(8, Math.ceil(countProductes/numProductos));
+  let numeroPaginas = Math.min(8, Math.ceil(countProductes/numProductos))
 
-  if(firstNumber < 1){
-    firstNumber = 1;
+  if(Tipo == "Lista de Favoritos"){
+    countProductes = cogerListaFavoritos().length
+    numeroPaginas = Math.min(8, Math.ceil(countProductes/numProductos))
   }
-  for(var i = firstNumber; i < firstNumber+numeroPaginas;i++){
-    paginas.push(i)
+  function cogerListaFavoritos(){
+    const valuesJson = []
+    let values = []
+    if (typeof window !== 'undefined') {
+      valuesJson = JSON.parse(window.localStorage.getItem("favoritos"))
+      if(valuesJson){
+        valuesJson.map((item) =>{
+          values.push(JSON.parse(item))
+        })
+      }
+    }
+    return values;
   }
-
   function Check(num){
     if(num == pagina){
       return 'active';
@@ -30,15 +40,22 @@ export default function ListaProductos({countProductes, Tipo, data}) {
     }
   }
 
+  if(firstNumber < 1){
+    firstNumber = 1;
+  }
+  for(var i = firstNumber; i < firstNumber+numeroPaginas;i++){
+    paginas.push(i)
+  }
+
   function CheckArrow(direccion){
     if(direccion == 'right'){
-      if(pagina>countProductes/numProductos-5){
+      if(pagina>countProductes/numProductos-1){
         return 'invisible'
       }else{
         return '';
       }
     }else if(direccion == 'left'){
-      if(pagina<5){
+      if(pagina<2){
         return 'invisible'
       }else{
         return '';
