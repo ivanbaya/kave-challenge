@@ -5,6 +5,7 @@ import Link from 'next/link'
 export default function  Search() {
 
     const searchRef = useRef(null)
+    const [searchBarClass, setSearchBarClass] = useState('search-bar')
     const [query, setQuery] = useState('')
     const [active, setActive] = useState(false)
     const [results, setResults] = useState([])
@@ -28,23 +29,26 @@ export default function  Search() {
     const onSumbit = useCallback(() => {
         setQuery("")
         setActive(false)
+        setSearchBarClass('search-bar')
     })
 
     const onFocus = useCallback(() => {
         setActive(true)
+        setSearchBarClass('search-bar-bigger')
         window.addEventListener('click', onClick)
     }, [])
 
     const onClick = useCallback((event) => {
         if(searchRef.current && !searchRef.current.contains(event.target)){
             setActive(false)
+            setSearchBarClass('search-bar')
             window.removeEventListener('click', onClick)
         }
     }, [])
 
     return (
         <div className={ active && results.length > 0 ? "search-div-border" : "search-div"} ref={searchRef}>
-            <div className="search-bar" >
+            <div className={searchBarClass}>
             <form action="/action_page.php">
                 <div className="search-icon">
                     <Image src="/search.svg" alt="Search icon" width={20} height={20} objectFit='contain'></Image>
