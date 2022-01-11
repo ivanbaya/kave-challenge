@@ -11,8 +11,10 @@ function cogerLista(){
 }
 
 export default (req, res) => {
-    const results = req.query.q ?
-        listaProductos.filter(producto => producto.productName.toLowerCase().includes(req.query.q.toLowerCase())) : []
+    let results = listaProductos
+    req.query.q.toLowerCase().split(" ").map(paraula=> {
+      results = results.filter(producto => producto.productName.toLowerCase().includes(paraula))
+    })
     res.statusCode = 200
     res.setHeader('Content-Type', 'application/json')
     res.end(JSON.stringify({results}))
