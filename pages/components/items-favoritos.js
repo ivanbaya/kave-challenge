@@ -1,15 +1,17 @@
-import React from 'react';
-import Product from './product';
+import React from 'react'
+import Product from './product'
 
 export default function Items(min,max){
 
-  var listaFavoritos = cogerListaFavoritos();
+  var listaFavoritos = cogerListaFavoritos()
 
   function cogerListaFavoritos(min, max){
     const valuesJson = []
     let values = []
+
     if (typeof window !== 'undefined') {
       valuesJson = JSON.parse(window.localStorage.getItem("favoritos"))
+
       if(valuesJson){
         valuesJson.map((item) =>{
           values.push(JSON.parse(item))

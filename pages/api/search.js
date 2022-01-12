@@ -1,13 +1,13 @@
 import Data from "../../public/productos/productos.json"
 
-var listaProductos = cogerLista();
+var listaProductos = cogerLista()
 
 function cogerLista(){
   let values = []
   Data.map((item) =>{
     values.push(item)
     })
-  return values;
+  return values
 }
 
 export default (req, res) => {

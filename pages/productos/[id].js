@@ -1,15 +1,15 @@
 import Image from 'next/image'
 import Head from 'next/head'
-import React from "react";
-import dynamic from "next/dynamic";
+import React from "react"
+import dynamic from "next/dynamic"
 import { useRouter } from 'next/router'
-import { useState } from "react";
-import checkFavorito from "../components/CheckFavorites";
-import addFavoritos from "../components/AddFavoritos";
-import getProps from '../components/getProps';
+import { useState } from "react"
+import checkFavorito from "../components/CheckFavorites"
+import addFavoritos from "../components/AddFavoritos"
+import getProps from '../components/getProps'
 
 
-const Header = dynamic(() => import("../components/header"));
+const Header = dynamic(() => import("../components/header"))
 
 export async function getStaticProps() {
   const data = await (await getProps()).props.data
@@ -19,6 +19,7 @@ export async function getStaticProps() {
     }
   }
 }
+
 export async function getStaticPaths() {
   return {
     paths: [
@@ -33,11 +34,13 @@ export default function ProductoMuestra({ ruta, href, data}) {
   let productos = listaProductos()
   asPath = asPath.substring(11)
   let item;
+
   productos.map((i) =>{
     if(i.productSku == asPath){
-      item = i;
+      item = i
     }
   })
+
   const [image, setImage] = useState(checkFavorito(item))
 
   function listaProductos(){
@@ -45,12 +48,14 @@ export default function ProductoMuestra({ ruta, href, data}) {
         data?.results.map((item) =>{
           values.push(item)
         })
-    return values;
+    return values
   }
+
   function changeImage(item){
     addFavoritos(item)
     setImage(checkFavorito(item))
   }
+
   return (
     <>    
     <Head>

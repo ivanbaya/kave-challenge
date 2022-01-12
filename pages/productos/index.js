@@ -1,6 +1,6 @@
-import React from "react";
-import dynamic from "next/dynamic";
-import getProps from '../components/getProps';
+import React from "react"
+import dynamic from "next/dynamic"
+import getProps from '../components/getProps'
 
 export async function getStaticProps() {
   const data = await (await getProps()).props.data
@@ -10,6 +10,7 @@ export async function getStaticProps() {
     }
   }
 }
+
 const ListaProductos = dynamic(() => import("../components/listaProductos"));
 
 function Productos({data}) {

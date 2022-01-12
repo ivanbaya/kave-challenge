@@ -1,6 +1,8 @@
 const addFavoritos = (item, setImage) => {
     let favList = []
-      favList = cogerListaFavoritos();
+
+      favList = cogerListaFavoritos()
+
       function cogerListaFavoritos() {
           var valuesJson = []
           if (typeof window !== 'undefined') {
@@ -10,6 +12,7 @@ const addFavoritos = (item, setImage) => {
           }
           return valuesJson
       }
+
       if (typeof window !== "undefined") {
         window.localStorage.removeItem("favoritos")
         if(favList.includes(JSON.stringify(item))){
@@ -21,4 +24,5 @@ const addFavoritos = (item, setImage) => {
         window.localStorage.setItem("favoritos",JSON.stringify(favList))
       }
     }
+
     export default addFavoritos
