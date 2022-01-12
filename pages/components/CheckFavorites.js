@@ -1,6 +1,8 @@
 const checkFavorito = (item) => {
     let favList = []
-    favList = cogerListaFavoritos();
+
+    favList = cogerListaFavoritos()
+
     function cogerListaFavoritos() {
         var valuesJson = []
         if (typeof window !== 'undefined') {
@@ -10,10 +12,11 @@ const checkFavorito = (item) => {
         }
         return valuesJson
     }
+    
     if(favList.includes(JSON.stringify(item))){
         return "/corazon-favorito.svg"
     }else{
-        return "/corazon.svg"; 
+        return "/corazon.svg"
     }
-};
+}
 export default checkFavorito;

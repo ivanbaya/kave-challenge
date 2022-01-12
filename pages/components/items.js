@@ -1,5 +1,5 @@
-import React from 'react';
-import Product from './product';
+import React from 'react'
+import Product from './product'
 
 function Items({data}){
 

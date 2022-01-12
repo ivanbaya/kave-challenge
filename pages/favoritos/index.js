@@ -1,9 +1,11 @@
-import React from "react";
-import dynamic from "next/dynamic";
+import React from "react"
+import dynamic from "next/dynamic"
 
-const ListaProductos = dynamic(() => import("../components/listaProductos"));
+const ListaProductos = dynamic(() => import("../components/listaProductos"))
+
 const tipo = "Lista de Favoritos"
-const countProductes = 20;
+const countProductes = 20
+
 if (typeof window !== "undefined") {
     countProductes = cogerListaFavoritos().length
 }
@@ -27,5 +29,5 @@ export default function Productos() {
         })
       }
     }
-    return values;
+    return values
   }
