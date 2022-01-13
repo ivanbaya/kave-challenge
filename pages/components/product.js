@@ -11,7 +11,7 @@ export default function Product ({item}) {
     setImage(checkFavorito(item))
   }
   return (
-    <li key={item.productSku} className="producto">
+    <li key={item.productSku}>
       <div className="producto-imagen-corazon">
         <Link href={"/productos/"+item.productSku}><a><Image src={item.productImageUrl ? item.productImageUrl : 'https://media.kavehome.com/media/catalog/product/Y/G/YG0032R53-1V01-20211210130811.jpg'} alt={item.productName ? item.productName : null} width={500} height={350} objectFit='contain'></Image></a></Link>
         <div className="topright">
