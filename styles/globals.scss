@@ -240,15 +240,15 @@ ul{
   overflow: auto;
   margin-left: 8px;
   margin-bottom: 100px;
-    @media screen and (max-width: 1945px) {
+    @media screen and (max-width: 1795px) {
       display:flex;
     }
     li{
         display: inline-block;
         margin:15px;
         img{
-            width: 290px;
-            height: 230px;
+            width: 265px;
+            height: 220px;
         }
     }
 }

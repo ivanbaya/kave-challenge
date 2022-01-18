@@ -29,7 +29,7 @@ export default function Home({data}) {
   }else{
     numProductos = 8
   }
-  const randomNum = Math.floor(Math.random() * countProductes-numProductos) + 0
+  const randomNum = Math.floor(Math.random() * countProductes-numProductos)
 
   return (
     <>
